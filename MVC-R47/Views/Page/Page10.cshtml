@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Page10";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+}
+
+<h2>Page10</h2>
+<h2>Action called: page9</h2>
+<hr />
+@Html.Action("Page9")
+<br/>
+@{Html.RenderAction("Page9");}
+

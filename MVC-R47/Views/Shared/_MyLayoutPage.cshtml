@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>@ViewBag.Title - Common Writting</title>
+    @Styles.Render("~/Content/css")@*comes from BundlesConfig.cs*@
+<link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet" />
+ </head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                <img src="~/images/murach.png" class="img-responsive thumbnail" />
+            </div>
+            <div class="col-sm-7 text-center">
+               ABC Company Limited
+            </div>
+            <div class="col-sm-3" style="border:1px solid red">
+
+                <h2>Partial Page</h2>
+                @Html.Partial("_LoginPartial")
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <ul class="nav navbar-nav">
+                    <li class="active">@Html.ActionLink("Page1", "Page1", "Page")</li>
+                    <li>@Html.ActionLink("Page1", "Page1", "Page")</li>
+                    <li>@Html.ActionLink("Page2", "Page2", "Page")</li>
+                    <li>@Html.ActionLink("Page3", "Page3", "Page")</li>
+                    <li>@Html.ActionLink("Page4", "myaction", "Page")</li>
+                    <li>@Html.ActionLink("Page5", "Index", "foodMenuTBs")</li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+            Left Menu
+            </div>
+            <div class="col-sm-8">
+                <div>
+                    @RenderSection("_PartialPage1", false)
+                    @if (IsSectionDefined("section2"))
+                    {
+                        @RenderSection("section2")
+                    }
+                    else
+                    {
+                        <hr /><span  style="background-color:skyblue">Section2 is not found</span>
+                    }
+                    @RenderBody()
+                </div>
+            </div>
+            <div class="col-sm-2">
+                Advertisements
+            </div>
+        </div>
+    </div>
+    
+    @Scripts.Render("~/bundles/jquery")
+</body>
+</html>

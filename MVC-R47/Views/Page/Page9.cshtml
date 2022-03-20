@@ -1,0 +1,27 @@
+﻿@model List<MVC_R47.Models.foodMenuTB>
+@{
+    ViewBag.Title = "Page9";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+}
+
+<h2>Page9</h2>
+<h2>All Records in foodmenutb</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Food</th>
+        <th>Items</th>
+        <th>Price</th>
+    </tr>
+    @foreach (var a1 in Model)
+    {
+<tr>
+    <td>@a1.id</td>
+    <td>@a1.Food</td>
+    <td>@a1.Items</td>
+    <td>@a1.Price</td>
+
+</tr>
+    }
+
+</table>

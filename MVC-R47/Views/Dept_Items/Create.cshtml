@@ -1,0 +1,253 @@
+﻿@model MVC_R47.Models.Dept_Items
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Dept_Items</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="col-sm-4">
+        <h2>Department Table</h2>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DeptId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DeptId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DeptId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DeptName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DeptName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DeptName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-sm-8">
+        <div id="items"></div>
+        <h2>Items Table</h2>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ItemCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ItemCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ItemCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ItemName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cost, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cost, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Rate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Rate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <button type='button' id="add" class="btn btn-default">Add</button>
+    </div>
+        <h2 style="color:orange">@ViewBag.DeptError</h2>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type='button' id="save" class="btn btn-lg btn-default btn-primary">Save</button>
+                <input type="submit" value="Create" class="btn btn-default" style="display:none" />
+            </div>
+            
+
+        </div>
+       
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    $(document).ready(function () {
+        var act;
+        var index=-1;
+        $("#DeptId").keyup(function () {
+
+            $.ajax('/Dept_items/GetDept/' + $("#DeptId").val(),
+                {
+                    dataType: 'json',
+                    method: 'get',
+                    timeout: 500,
+                    success: function (data, status, xhr) {
+
+                       // alert(data.length);
+                        if (data !="") {
+                            $("#DeptName").val(data[0].deptname);
+                            $("#Location").val(data[0].location);
+
+
+                            showItems();
+                        }
+                        else {
+                            $("#DeptName").val("");
+                            $("#Location").val("");
+
+
+                            showItems();
+                        }
+
+
+                    },
+                    error: function (jqXhr, textStatus, errorMessage) {
+                        $('#out').html('Error: ' + errorMessage);
+                    }
+                });
+        });
+        function showItems() {
+            $.ajax('/Dept_items/GetItems/' + $("#DeptId").val(),
+                {
+                    dataType: 'json',
+                    method: 'get',
+                    timeout: 500,
+                    success: function (data, status, xhr) {
+                        act = data;
+                        // alert(act);
+                        items();
+                    },
+                    error: function (jqXhr, textStatus, errorMessage) {
+                        $('#out').html('Error: ' + errorMessage);
+                    }
+                });
+        }
+        function items() {
+            var j = 0;
+            var a = "<table class='table'><tr><th>Code</th><th>Name</th><th>Cost</th><th>Sale</th><th></th></tr>";
+            for (d in act) {
+                
+                a += `<tr><td>${act[d].itemcode}</td><td>${act[d].itemname}</td><td>${act[d].cost}</td><td>${act[d].rate}</td><td><button type='button' onclick="edit1('${act[d].itemcode}','${act[d].itemname}','${act[d].cost}','${act[d].rate}',${j})">Edit</button><button type='button' onclick="remove(${j})">Remove</button></td></tr>`;
+                j++;
+            }
+            a += "</table>";
+            $("#items").html(a);
+        }
+        $("#add").click(function () {
+            if ($("#add").html() == "Add") {
+                act.push({ "itemcode": $("#ItemCode").val(), "itemname": $("#ItemName").val(), "cost": $("#Cost").val(), "rate": $("#Rate").val() });
+            }
+            else {
+                //alert("here");
+                v = { "itemcode": $("#ItemCode").val(), "itemname": $("#ItemName").val(), "cost": $("#Cost").val(), "rate": $("#Rate").val() };
+                act[index] = v;
+                $("#add").html("Add");
+            }
+           // alert(act.length);
+            items();
+        });
+
+        $("#save").click(function () {
+            var i = 0;
+            $.ajax('/Dept_items/DeleteAll/' + $("#DeptId").val(),
+                {
+                    dataType: 'json',
+                    method: 'get',
+                    timeout: 500,
+                    success: function (data, status, xhr) {
+
+
+                        url = `deptid=${$("#DeptId").val()}&deptname=${$("#DeptName").val()}&location=${$("#Location").val()}`
+                        $.ajax('/Dept_items/InsertDept?' + url,
+                            {
+                                dataType: 'json',
+                                method: 'get',
+                                timeout: 500,
+                                success: function (data, status, xhr) {
+
+
+                                    for (d in act) {
+
+                                        url1 = `itemcode=${act[d].itemcode}&itemname=${act[d].itemname}&deptid=${$("#DeptId").val()}&cost=${act[d].cost}&rate=${act[d].rate}`;
+                                       // alert('/Dept_items/Insertitems?' + url1);
+                                        $.ajax('/Dept_items/Insertitems?' + url1,
+                                            {
+                                                dataType: 'json',
+                                                method: 'get',
+                                                timeout: 500,
+                                                success: function (data, status, xhr) {
+                                                    i++;
+                                                //    alert(i + "  " + act.length)
+                                                    if (i == act.length) {
+                                                        act = [];
+                                                        items();
+                                                    }
+                                                },
+                                                error: function (jqXhr, textStatus, errorMessage) {
+                                                    $('#out').html('Error: ' + errorMessage);
+                                                }
+                                            });
+
+
+
+                                    }
+
+
+
+
+
+                                },
+                                error: function (jqXhr, textStatus, errorMessage) {
+                                    $('#out').html('Error: ' + errorMessage);
+                                }
+                            });
+
+
+
+
+
+                    },
+                    error: function (jqXhr, textStatus, errorMessage) {
+                        $('#out').html('Error: ' + errorMessage);
+                    }
+                });
+        });
+        remove=function(j) {
+            act.splice(j, 1);
+            items();
+        }
+        edit1 = function (a, b, c, d,e) {
+            //alert("OK")
+            $("#ItemCode").val(a);
+            $("#ItemName").val(b);
+            $("#Cost").val(c);
+            $("#Rate").val(d);
+            $("#add").html("Edit");
+            index=e
+        }
+    })
+</script>

@@ -1,0 +1,78 @@
+﻿@model MVC_R47.Models.MathCalculation
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>MathCalculation</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Number1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Number1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Number1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Number2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Number2, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Number2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.outputNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.outputNumber, new { htmlAttributes = new { @class = "form-control" } })
+        @*@Html.ValidationMessageFor(model => model.outputNumber, "", new { @class = "text-danger" })*@
+                @*@Html.Label(Model.outputNumber.ToString(), new
+           {
+               htmlAttributes =
+                new { @class = "control-Label" }
+           })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.operation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.operation, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.operation, "", new { @class = "text-danger" })*@
+                @Html.DropDownList("operation", (IEnumerable<SelectListItem>)ViewBag.Operations)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.result, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.result, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.result, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" name="index1" value="Full Operation" class="btn btn-default" />
+                <input type="submit" name="add" value="Operation" class="btn btn-default" />
+            </div>
+        </div>
+        <hr />
+        Output from ViewBag: @ViewBag.onb<br />
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MVC_R47.Models.student2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.@class)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.picturepath)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.@class)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.picturepath)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

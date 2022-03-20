@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4d44f842ffd245a1a26efc680baecb24" Name="Diagram1">
+        <EntityTypeShape EntityType="cnstringModel.foodMenuTB" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cnstringModel.department" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="cnstringModel.item" Width="1.5" PointX="1" PointY="3.375" />
+        <EntityTypeShape EntityType="cnstringModel.party" Width="1.5" PointX="6.75" PointY="1.5" />
+        <EntityTypeShape EntityType="cnstringModel.purchasedetail" Width="1.5" PointX="4.75" PointY="0.5" />
+        <EntityTypeShape EntityType="cnstringModel.purchasemaster" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="cnstringModel.salesdetail" Width="1.5" PointX="4.125" PointY="3.625" />
+        <EntityTypeShape EntityType="cnstringModel.salesmaster" Width="1.5" PointX="5.75" PointY="5.25" />
+        <AssociationConnector Association="cnstringModel.FK__items__deptid__17F790F9" />
+        <AssociationConnector Association="cnstringModel.FK__purchased__itemc__1AD3FDA4" />
+        <AssociationConnector Association="cnstringModel.FK__salesdeta__itemc__22751F6C" />
+        <AssociationConnector Association="cnstringModel.FK__purchasemas__PID__1F98B2C1" />
+        <AssociationConnector Association="cnstringModel.FK__salesmaster__PID__25518C17" />
+        <EntityTypeShape EntityType="cnstringModel.student2" Width="1.5" PointX="0.75" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

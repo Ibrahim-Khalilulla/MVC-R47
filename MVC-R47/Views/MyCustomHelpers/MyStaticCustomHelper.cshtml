@@ -1,0 +1,38 @@
+﻿@using MVC_R47.HtmlHelpers
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @*<h2>Extension Method Custom Helpers</h2>
+        <div>
+            @Html.img("/Images/murach.png", "Mark Zuck", "Mark Zuckerberg")
+            @Html.img("/Images/murach.png", "Bill Gates", "Bill Gates", 250, 167)
+            @Html.img("/Images/murach.png", "APJ Abdul Kalam", "APJ Abdul Kalam", 250)
+            @Html.img("/Images/murach.png", "Steve Jobs", "Steve Jobs", 200, 200)
+        </div>*@
+    @*<hr />
+        <h2>Static Method Custome Helpers</h2>
+        <div>
+            @Html.Raw(HelperByExt.img("/Images/murach.png", "Mark Zuck", "Mark Zuckerberg"))
+            @Html.Raw(HelperByExt.img("/Images/murach.png", "Bill Gates", "Bill Gates", 250, 167))
+            @Html.Raw(HelperByExt.img("/Images/murach.png", "APJ Abdul Kalam", "APJ Abdul Kalam", 250))
+            @Html.Raw(HelperByExt.img("/Images/murach.png", "Steve Jobs", "Steve Jobs", 200, 200))
+        </div>*@
+    <h1>Helper By @@helper </h1>
+    <div>
+        @helper img(string Source, string alt, string title,
+        int Height = 128, int Width = 128)
+        {
+            <img src="@Source" alt="@alt" title="@title" height="@Height" width="@Width" />
+        }
+        @img("/Images/murach.png", "Mark Zuck", "Mark Zuckerberg")
+        @img("/Images/murach.png", "Bill Gates", "Bill Gates", 250, 167)
+        @img("/Images/murach.png", "APJ Abdul Kalam", "APJ Abdul Kalam", 250)
+        @img("/Images/murach.png", "Steve Jobs", "Steve Jobs", 200, 200)
+    </div>
+
+</body>
+</html>

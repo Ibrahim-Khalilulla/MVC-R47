@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MVC_R47.Models.student2>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Show Records</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.@class)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fee)
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.@class)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fee)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "EditStudents", new { controller = "Chapter4", action = "EditStudents", id = item.id })
+    </td>
+</tr>
+    }
+</table>
+@Html.ActionLink("Go to Name page", "showName", new { controller = "Chapter4", action = "ShowName" })
+<br />
+@Html.ActionLink("Go to Class page", "showClassName", new { controller = "Chapter4", action = "ShowClassName" })
+
+

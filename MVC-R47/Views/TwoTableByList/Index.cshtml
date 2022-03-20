@@ -1,0 +1,259 @@
+﻿@model MVC_R47.Models.master
+   
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    @using (Html.BeginForm("index", "TwoTableByList", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="container">
+
+            <div>
+                <label for="salesid">Sales Id</label>
+                <input type="text" id="salesid" name="salesid" class="form-control" value="@ViewBag.sid" />
+            </div>
+            <div>
+                <label for="saleid">Date</label>
+                <input type="date" id="date" name="date" class="form-control" value="@ViewBag.date" />
+            </div>
+            <div>
+                <label for="itemcode">itemcode</label>
+                <input type="text" id="itemcode" name="itemcode" class="form-control" />
+            </div>
+            <div>
+                <label for="itemname">itemname</label>
+                <input type="text" id="itemname" name="itemname" class="form-control" />
+            </div>
+            <div>
+                <label for="qty">qty</label>
+                <input type="text" id="qty" name="qty" class="form-control" />
+            </div>
+            <div>
+                <label for="unitprice">unitprice</label>
+                <input type="text" id="unitprice" name="unitprice" class="form-control" />
+            </div>
+            <div>
+                <label for="party">party</label>
+                <input type="text" id="party" name="party" class="form-control" />
+            </div>
+            <div>
+                <button type="submit" name="AddDetails">Add</button>
+            </div>
+
+        </div>
+
+
+
+
+        if (@ViewBag.records != null)
+        {
+            <div class="col-sm-12">
+                <table class="table">
+                    <tr>
+                        <th>
+                            Sl
+                        </th>
+                        <th>
+                            Itemcode
+                        </th>
+                        <th>
+                            ItemName
+                        </th>
+                        <th>
+                            Qty
+                        </th>
+                        <th>
+                            UnitPrice
+                        </th>
+                        <th>Total</th>
+                    </tr>
+                    @foreach (var item in @ViewBag.records)
+                    {
+                        <tr>
+                            <td>
+                                @item.slno
+                            </td>
+                            <td>
+                                @item.itemcode
+                            </td>
+                            <td>
+                                @item.itemname
+                            </td>
+                            <td>
+                                @item.qty
+                            </td>
+
+                            <td>
+                                @item.unitprice
+                            </td>
+                            <td>
+                                @item.totalprice
+                            </td>
+                        </tr>
+
+                    }
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input type="text" id="total" name="total" class="form-control" value="@ViewBag.t" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input type="text" id="discount" name="discount" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input type="text" id="gross" name="gross" class="form-control" />
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <button type="submit" name="Save">Save</button>
+                </div>
+            </div>
+        }
+    }
+
+
+
+
+
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //downloadStudents();
+            $("#itemcode").click(function () {
+                $.ajax('/items/getitem/'+$("#itemcode").val(),
+                    {
+                        data: {  },
+                        dataType: 'json',
+                        method: 'get',
+                        timeout: 500,
+                        success: function (data, status, xhr) {
+                           // alert(data);
+                            $('#itemname').val(data.itemname);
+                            $('#unitprice').val(data.sell);
+                            //downloadStudents();
+                        },
+                        error: function (jqXhr, textStatus, errorMessage) {
+                            $('#out').html('Error: ' + errorMessage);
+                        }
+                    });
+            });
+
+
+
+
+
+            function downloadStudents() {
+                $("table tbody").empty();
+                $.getJSON("/mystudent/Getstudents",
+                    function (data) { _displayStudents(data); });
+            }
+            function _displayStudents(data) {
+                for (var i = 0; i < data.length; i++) {
+                    var ids = data[i];
+                    $("table tbody").append(`<tr onclick="_displayStudent('${ids.id}','${ids.name}','${ids.class}','${ids.fee}')"><td>${ids.id}</td><td>${ids.name}</td><td>${ids.class}</td><td>${ids.fee}</td><td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Edit</button></td></tr>`);
+                };
+            }
+            $("#add").click(function () {
+                $.ajax('/mystudent/poststudent',
+                    {
+                        data: { id: $("#id").val(), name: $("#name").val(), class: $("#class").val(), fee: $("#fee").val() },
+                        dataType: 'json',
+                        method: 'post',
+                        timeout: 500,
+                        success: function (data, status, xhr) {
+                            $('#out').html("Successfuly added");
+                            downloadStudents();
+                        },
+                        error: function (jqXhr, textStatus, errorMessage) {
+                            $('#out').html('Error: ' + errorMessage);
+                        }
+                    });
+            });
+            $("#update").click(function () {
+                $.ajax('/mystudent/putstudent/' + $("#id").val(),
+                    {
+                        data: { id: $("#id").val(), name: $("#name").val(), class: $("#class").val(), fee: $("#fee").val() },
+                        dataType: 'json',
+                        method: 'post',
+                        timeout: 500,
+                        success: function (data, status, xhr) {
+                            $('#out').html("Successfuly updated");
+                            downloadStudents();
+                        },
+                        error: function (jqXhr, textStatus, errorMessage) {
+                            $('#out').html('Error: ' + errorMessage);
+                        }
+                    });
+            });
+            $("#delete").click(function () {
+                $.ajax('/mystudent/deletestudent/' + $("#id").val(),
+                    {
+                        dataType: 'json',
+                        method: 'post',
+                        timeout: 500,
+                        success: function (data, status, xhr) {
+                            $('#out').html("Successfuly deleted");
+                            downloadStudents();
+                        },
+                        error: function (jqXhr, textStatus, errorMessage) {
+                            $('#out').html('Error: ' + errorMessage);
+                        }
+                    });
+            });
+            $("#operation").click(function () {
+                $("#id").val("");
+                $("#name").val("");
+                $("#class").val("");
+                $("#fee").val("");
+            })
+        });
+        function _displayStudent(id, name, class1, fee) {
+            $("#id").val(id);
+            $("#name").val(name);
+            $("#class").val(class1);
+            $("#fee").val(fee);
+        }
+
+
+    </script>
+
+
+
+</body>
+</html>
+
+
+
+

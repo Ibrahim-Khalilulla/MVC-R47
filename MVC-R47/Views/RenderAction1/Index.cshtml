@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+}
+
+<h2>Index</h2>
+
+@*@{Html.RenderAction("index", "Chapter5");}
+    <hr />
+    @Html.Action("index", "stu_guard");
+    <hr />
+    @Html.Action("index", "Chapter4Vm");*@
+@Html.Partial("View1")
+<hr />
+@Html.Partial("View2")

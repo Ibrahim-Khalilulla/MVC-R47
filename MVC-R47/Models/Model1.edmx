@@ -1,0 +1,519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="cnstringModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="deptid" />
+          </Key>
+          <Property Name="deptid" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="deptname" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="foodMenuTB">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Food" Type="varchar" MaxLength="50" />
+          <Property Name="Items" Type="varchar" MaxLength="150" />
+          <Property Name="Price" Type="money" />
+        </EntityType>
+        <EntityType Name="items">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="deptid" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="party">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="address" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="purchasedetails">
+          <Key>
+            <PropertyRef Name="vrno" />
+            <PropertyRef Name="slno" />
+          </Key>
+          <Property Name="vrno" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="slno" Type="int" Nullable="false" />
+          <Property Name="itemcode" Type="varchar" MaxLength="10" />
+          <Property Name="qty" Type="int" />
+          <Property Name="unitprice" Type="money" />
+          <Property Name="totalprice" Type="money" StoreGeneratedPattern="Computed" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="purchasemaster">
+          <Key>
+            <PropertyRef Name="vrno" />
+          </Key>
+          <Property Name="vrno" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="total" Type="money" />
+          <Property Name="discount" Type="money" />
+          <Property Name="net" Type="money" StoreGeneratedPattern="Computed" />
+          <Property Name="paid" Type="money" />
+          <Property Name="due" Type="money" StoreGeneratedPattern="Computed" />
+          <Property Name="PID" Type="varchar" MaxLength="10" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="salesdetails">
+          <Key>
+            <PropertyRef Name="vrno" />
+            <PropertyRef Name="slno" />
+          </Key>
+          <Property Name="vrno" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="slno" Type="int" Nullable="false" />
+          <Property Name="itemcode" Type="varchar" MaxLength="10" />
+          <Property Name="qty" Type="int" />
+          <Property Name="unitprice" Type="money" />
+          <Property Name="totalprice" Type="money" StoreGeneratedPattern="Computed" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="salesmaster">
+          <Key>
+            <PropertyRef Name="vrno" />
+          </Key>
+          <Property Name="vrno" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="total" Type="money" />
+          <Property Name="discount" Type="money" />
+          <Property Name="net" Type="money" StoreGeneratedPattern="Computed" />
+          <Property Name="paid" Type="money" />
+          <Property Name="due" Type="money" StoreGeneratedPattern="Computed" />
+          <Property Name="PID" Type="varchar" MaxLength="10" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="student2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="class" Type="varchar" MaxLength="100" />
+          <Property Name="fee" Type="money" />
+        </EntityType>
+        <Association Name="FK__items__deptid__17F790F9">
+          <End Role="department" Type="Self.department" Multiplicity="0..1" />
+          <End Role="items" Type="Self.items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="deptid" />
+            </Principal>
+            <Dependent Role="items">
+              <PropertyRef Name="deptid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__purchased__itemc__1AD3FDA4">
+          <End Role="items" Type="Self.items" Multiplicity="0..1" />
+          <End Role="purchasedetails" Type="Self.purchasedetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items">
+              <PropertyRef Name="itemcode" />
+            </Principal>
+            <Dependent Role="purchasedetails">
+              <PropertyRef Name="itemcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__purchasemas__PID__1F98B2C1">
+          <End Role="party" Type="Self.party" Multiplicity="0..1" />
+          <End Role="purchasemaster" Type="Self.purchasemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="party">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="purchasemaster">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__salesdeta__itemc__22751F6C">
+          <End Role="items" Type="Self.items" Multiplicity="0..1" />
+          <End Role="salesdetails" Type="Self.salesdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items">
+              <PropertyRef Name="itemcode" />
+            </Principal>
+            <Dependent Role="salesdetails">
+              <PropertyRef Name="itemcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__salesmaster__PID__25518C17">
+          <End Role="party" Type="Self.party" Multiplicity="0..1" />
+          <End Role="salesmaster" Type="Self.salesmaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="party">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="salesmaster">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="cnstringModelStoreContainer">
+          <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="foodMenuTB" EntityType="Self.foodMenuTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="items" EntityType="Self.items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="party" EntityType="Self.party" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="purchasedetails" EntityType="Self.purchasedetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="purchasemaster" EntityType="Self.purchasemaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salesdetails" EntityType="Self.salesdetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salesmaster" EntityType="Self.salesmaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student2" EntityType="Self.student2" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__items__deptid__17F790F9" Association="Self.FK__items__deptid__17F790F9">
+            <End Role="department" EntitySet="department" />
+            <End Role="items" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__purchased__itemc__1AD3FDA4" Association="Self.FK__purchased__itemc__1AD3FDA4">
+            <End Role="items" EntitySet="items" />
+            <End Role="purchasedetails" EntitySet="purchasedetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__purchasemas__PID__1F98B2C1" Association="Self.FK__purchasemas__PID__1F98B2C1">
+            <End Role="party" EntitySet="party" />
+            <End Role="purchasemaster" EntitySet="purchasemaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__salesdeta__itemc__22751F6C" Association="Self.FK__salesdeta__itemc__22751F6C">
+            <End Role="items" EntitySet="items" />
+            <End Role="salesdetails" EntitySet="salesdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__salesmaster__PID__25518C17" Association="Self.FK__salesmaster__PID__25518C17">
+            <End Role="party" EntitySet="party" />
+            <End Role="salesmaster" EntitySet="salesmaster" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cnstringModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="foodMenuTB">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Food" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Items" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityContainer Name="cnstringEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="foodMenuTBs" EntityType="Self.foodMenuTB" />
+          <EntitySet Name="departments" EntityType="cnstringModel.department" />
+          <EntitySet Name="items" EntityType="cnstringModel.item" />
+          <EntitySet Name="parties" EntityType="cnstringModel.party" />
+          <EntitySet Name="purchasedetails" EntityType="cnstringModel.purchasedetail" />
+          <EntitySet Name="purchasemasters" EntityType="cnstringModel.purchasemaster" />
+          <EntitySet Name="salesdetails" EntityType="cnstringModel.salesdetail" />
+          <EntitySet Name="salesmasters" EntityType="cnstringModel.salesmaster" />
+          <AssociationSet Name="FK__items__deptid__17F790F9" Association="cnstringModel.FK__items__deptid__17F790F9">
+            <End Role="department" EntitySet="departments" />
+            <End Role="item" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__purchased__itemc__1AD3FDA4" Association="cnstringModel.FK__purchased__itemc__1AD3FDA4">
+            <End Role="item" EntitySet="items" />
+            <End Role="purchasedetail" EntitySet="purchasedetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__salesdeta__itemc__22751F6C" Association="cnstringModel.FK__salesdeta__itemc__22751F6C">
+            <End Role="item" EntitySet="items" />
+            <End Role="salesdetail" EntitySet="salesdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__purchasemas__PID__1F98B2C1" Association="cnstringModel.FK__purchasemas__PID__1F98B2C1">
+            <End Role="party" EntitySet="parties" />
+            <End Role="purchasemaster" EntitySet="purchasemasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__salesmaster__PID__25518C17" Association="cnstringModel.FK__salesmaster__PID__25518C17">
+            <End Role="party" EntitySet="parties" />
+            <End Role="salesmaster" EntitySet="salesmasters" />
+          </AssociationSet>
+          <EntitySet Name="student2" EntityType="cnstringModel.student2" />
+        </EntityContainer>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="deptid" />
+          </Key>
+          <Property Name="deptid" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="deptname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="items" Relationship="cnstringModel.FK__items__deptid__17F790F9" FromRole="department" ToRole="item" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="deptid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="department" Relationship="cnstringModel.FK__items__deptid__17F790F9" FromRole="item" ToRole="department" />
+          <NavigationProperty Name="purchasedetails" Relationship="cnstringModel.FK__purchased__itemc__1AD3FDA4" FromRole="item" ToRole="purchasedetail" />
+          <NavigationProperty Name="salesdetails" Relationship="cnstringModel.FK__salesdeta__itemc__22751F6C" FromRole="item" ToRole="salesdetail" />
+        </EntityType>
+        <EntityType Name="party">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="purchasemasters" Relationship="cnstringModel.FK__purchasemas__PID__1F98B2C1" FromRole="party" ToRole="purchasemaster" />
+          <NavigationProperty Name="salesmasters" Relationship="cnstringModel.FK__salesmaster__PID__25518C17" FromRole="party" ToRole="salesmaster" />
+        </EntityType>
+        <EntityType Name="purchasedetail">
+          <Key>
+            <PropertyRef Name="vrno" />
+            <PropertyRef Name="slno" />
+          </Key>
+          <Property Name="vrno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="slno" Type="Int32" Nullable="false" />
+          <Property Name="itemcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="unitprice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="totalprice" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="item" Relationship="cnstringModel.FK__purchased__itemc__1AD3FDA4" FromRole="purchasedetail" ToRole="item" />
+        </EntityType>
+        <EntityType Name="purchasemaster">
+          <Key>
+            <PropertyRef Name="vrno" />
+          </Key>
+          <Property Name="vrno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="discount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="net" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="paid" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="due" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="PID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="party" Relationship="cnstringModel.FK__purchasemas__PID__1F98B2C1" FromRole="purchasemaster" ToRole="party" />
+        </EntityType>
+        <EntityType Name="salesdetail">
+          <Key>
+            <PropertyRef Name="vrno" />
+            <PropertyRef Name="slno" />
+          </Key>
+          <Property Name="vrno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="slno" Type="Int32" Nullable="false" />
+          <Property Name="itemcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="unitprice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="totalprice" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="item" Relationship="cnstringModel.FK__salesdeta__itemc__22751F6C" FromRole="salesdetail" ToRole="item" />
+        </EntityType>
+        <EntityType Name="salesmaster">
+          <Key>
+            <PropertyRef Name="vrno" />
+          </Key>
+          <Property Name="vrno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="discount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="net" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="paid" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="due" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="PID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="party" Relationship="cnstringModel.FK__salesmaster__PID__25518C17" FromRole="salesmaster" ToRole="party" />
+        </EntityType>
+        <Association Name="FK__items__deptid__17F790F9">
+          <End Type="cnstringModel.department" Role="department" Multiplicity="0..1" />
+          <End Type="cnstringModel.item" Role="item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="deptid" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="deptid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__purchased__itemc__1AD3FDA4">
+          <End Type="cnstringModel.item" Role="item" Multiplicity="0..1" />
+          <End Type="cnstringModel.purchasedetail" Role="purchasedetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemcode" />
+            </Principal>
+            <Dependent Role="purchasedetail">
+              <PropertyRef Name="itemcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__salesdeta__itemc__22751F6C">
+          <End Type="cnstringModel.item" Role="item" Multiplicity="0..1" />
+          <End Type="cnstringModel.salesdetail" Role="salesdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemcode" />
+            </Principal>
+            <Dependent Role="salesdetail">
+              <PropertyRef Name="itemcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__purchasemas__PID__1F98B2C1">
+          <End Type="cnstringModel.party" Role="party" Multiplicity="0..1" />
+          <End Type="cnstringModel.purchasemaster" Role="purchasemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="party">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="purchasemaster">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__salesmaster__PID__25518C17">
+          <End Type="cnstringModel.party" Role="party" Multiplicity="0..1" />
+          <End Type="cnstringModel.salesmaster" Role="salesmaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="party">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="salesmaster">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="student2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="class" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fee" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cnstringModelStoreContainer" CdmEntityContainer="cnstringEntities">
+          <EntitySetMapping Name="foodMenuTBs">
+            <EntityTypeMapping TypeName="cnstringModel.foodMenuTB">
+              <MappingFragment StoreEntitySet="foodMenuTB">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Food" ColumnName="Food" />
+                <ScalarProperty Name="Items" ColumnName="Items" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="departments">
+            <EntityTypeMapping TypeName="cnstringModel.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="deptname" ColumnName="deptname" />
+                <ScalarProperty Name="deptid" ColumnName="deptid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="items">
+            <EntityTypeMapping TypeName="cnstringModel.item">
+              <MappingFragment StoreEntitySet="items">
+                <ScalarProperty Name="deptid" ColumnName="deptid" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parties">
+            <EntityTypeMapping TypeName="cnstringModel.party">
+              <MappingFragment StoreEntitySet="party">
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="purchasedetails">
+            <EntityTypeMapping TypeName="cnstringModel.purchasedetail">
+              <MappingFragment StoreEntitySet="purchasedetails">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="totalprice" ColumnName="totalprice" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+                <ScalarProperty Name="slno" ColumnName="slno" />
+                <ScalarProperty Name="vrno" ColumnName="vrno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="purchasemasters">
+            <EntityTypeMapping TypeName="cnstringModel.purchasemaster">
+              <MappingFragment StoreEntitySet="purchasemaster">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="due" ColumnName="due" />
+                <ScalarProperty Name="paid" ColumnName="paid" />
+                <ScalarProperty Name="net" ColumnName="net" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="vrno" ColumnName="vrno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salesdetails">
+            <EntityTypeMapping TypeName="cnstringModel.salesdetail">
+              <MappingFragment StoreEntitySet="salesdetails">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="totalprice" ColumnName="totalprice" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+                <ScalarProperty Name="slno" ColumnName="slno" />
+                <ScalarProperty Name="vrno" ColumnName="vrno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salesmasters">
+            <EntityTypeMapping TypeName="cnstringModel.salesmaster">
+              <MappingFragment StoreEntitySet="salesmaster">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="due" ColumnName="due" />
+                <ScalarProperty Name="paid" ColumnName="paid" />
+                <ScalarProperty Name="net" ColumnName="net" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="vrno" ColumnName="vrno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="student2">
+            <EntityTypeMapping TypeName="cnstringModel.student2">
+              <MappingFragment StoreEntitySet="student2">
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="class" ColumnName="class" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

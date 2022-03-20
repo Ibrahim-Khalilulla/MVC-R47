@@ -1,0 +1,38 @@
+﻿@model List<MVC_R47.Models.AddingNumbers>
+@{
+    ViewBag.Title = "Page3";
+    if (!Request.Browser.IsMobileDevice)
+    {
+        Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+    }
+    ViewData["msg"] = "hello";
+    var a = "karim";
+    var c = false;
+}
+
+<h2>Page3</h2>
+<h3>@ViewBag.Message</h3>
+<p>This is Page3</p>
+<p>@ViewData["msg"]</p>
+<p>@("welcome " + a)</p>
+<h2>All Numbers</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>Number1</th>
+        <th>Number2</th>
+        <th>Output Number</th>
+    </tr>
+    @foreach (var a1 in Model)
+    {
+        <tr>
+            <td>@a1.Number1</td>
+            <td>@a1.Number2</td>
+            <td>@a1.OutputNumber</td>
+        </tr>
+    }
+</table>
+<hr />
+<div class="@c">
+    c value is true
+</div>
+

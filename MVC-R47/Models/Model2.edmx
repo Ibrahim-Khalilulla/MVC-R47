@@ -1,0 +1,1041 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="cm_restoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CourseInstructor">
+          <Key>
+            <PropertyRef Name="InstructorID" />
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="InstructorID" Type="int" Nullable="false" />
+          <Property Name="CourseID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="CourseID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Credits" Type="int" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="dept2">
+          <Key>
+            <PropertyRef Name="deptid" />
+          </Key>
+          <Property Name="deptid" Type="int" Nullable="false" />
+          <Property Name="deptname" Type="varchar" MaxLength="100" />
+          <Property Name="location" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="details">
+          <Key>
+            <PropertyRef Name="salesid" />
+            <PropertyRef Name="slno" />
+          </Key>
+          <Property Name="salesid" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="slno" Type="int" Nullable="false" />
+          <Property Name="itemcode" Type="varchar" MaxLength="100" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="qty" Type="int" />
+          <Property Name="unitprice" Type="money" />
+          <Property Name="totalprice" Type="money" />
+        </EntityType>
+        <EntityType Name="Enrollments">
+          <Key>
+            <PropertyRef Name="EnrollmentID" />
+          </Key>
+          <Property Name="EnrollmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseID" Type="int" Nullable="false" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="Grade" Type="int" />
+        </EntityType>
+        <EntityType Name="Guradian5">
+          <Key>
+            <PropertyRef Name="GuardianID" />
+          </Key>
+          <Property Name="GuardianID" Type="int" Nullable="false" />
+          <Property Name="FatherName" Type="varchar" MaxLength="100" />
+          <Property Name="MotherName" Type="varchar" MaxLength="100" />
+          <Property Name="StudentsId" Type="int" />
+        </EntityType>
+        <EntityType Name="Instructors">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstMidName" Type="nvarchar" MaxLength="50" />
+          <Property Name="HireDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="items">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="gname" Type="varchar" MaxLength="100" />
+          <Property Name="cost" Type="money" />
+          <Property Name="sell" Type="money" />
+        </EntityType>
+        <EntityType Name="items2">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="int" Nullable="false" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="deptid" Type="int" />
+          <Property Name="cost" Type="money" />
+          <Property Name="rate" Type="money" />
+        </EntityType>
+        <EntityType Name="master">
+          <Key>
+            <PropertyRef Name="salesid" />
+          </Key>
+          <Property Name="salesid" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="party" Type="varchar" MaxLength="100" />
+          <Property Name="total" Type="money" />
+          <Property Name="discount" Type="money" />
+          <Property Name="gross" Type="money" />
+          <Property Name="paid" Type="money" />
+          <Property Name="due" Type="money" />
+        </EntityType>
+        <EntityType Name="OfficeAssignments">
+          <Key>
+            <PropertyRef Name="InstructorID" />
+          </Key>
+          <Property Name="InstructorID" Type="int" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sales">
+          <Key>
+            <PropertyRef Name="salesid" />
+            <PropertyRef Name="slno" />
+          </Key>
+          <Property Name="salesid" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="slno" Type="int" Nullable="false" />
+          <Property Name="itemcode" Type="varchar" MaxLength="100" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="price" Type="money" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="student2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="class" Type="varchar" MaxLength="100" />
+          <Property Name="fee" Type="money" />
+        </EntityType>
+        <EntityType Name="student5">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Class" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstMidName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EnrollmentDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Guradian5__Stude__08B54D69">
+          <End Role="student5" Type="Self.student5" Multiplicity="0..1" />
+          <End Role="Guradian5" Type="Self.Guradian5" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student5">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Guradian5">
+              <PropertyRef Name="StudentsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__items2__deptid__0D7A0286">
+          <End Role="dept2" Type="Self.dept2" Multiplicity="0..1" />
+          <End Role="items2" Type="Self.items2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dept2">
+              <PropertyRef Name="deptid" />
+            </Principal>
+            <Dependent Role="items2">
+              <PropertyRef Name="deptid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Enrollments_dbo_Courses_CourseID">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Enrollments" Type="Self.Enrollments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="Enrollments">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Enrollments_dbo_Students_StudentID">
+          <End Role="Students" Type="Self.Students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Enrollments" Type="Self.Enrollments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Enrollments">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_InstructorCourses_dbo_Courses_Course_CourseID">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CourseInstructor" Type="Self.CourseInstructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="CourseInstructor">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_InstructorCourses_dbo_Instructors_Instructor_ID">
+          <End Role="Instructors" Type="Self.Instructors" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CourseInstructor" Type="Self.CourseInstructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseInstructor">
+              <PropertyRef Name="InstructorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OfficeAssignments_dbo_Instructors_InstructorID">
+          <End Role="Instructors" Type="Self.Instructors" Multiplicity="1" />
+          <End Role="OfficeAssignments" Type="Self.OfficeAssignments" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Instructors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OfficeAssignments">
+              <PropertyRef Name="InstructorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="cm_restoModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourseInstructor" EntityType="Self.CourseInstructor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dept2" EntityType="Self.dept2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="details" EntityType="Self.details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Enrollments" EntityType="Self.Enrollments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guradian5" EntityType="Self.Guradian5" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Instructors" EntityType="Self.Instructors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="items" EntityType="Self.items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="items2" EntityType="Self.items2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="master" EntityType="Self.master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfficeAssignments" EntityType="Self.OfficeAssignments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sales" EntityType="Self.sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student2" EntityType="Self.student2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student5" EntityType="Self.student5" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Guradian5__Stude__08B54D69" Association="Self.FK__Guradian5__Stude__08B54D69">
+            <End Role="student5" EntitySet="student5" />
+            <End Role="Guradian5" EntitySet="Guradian5" />
+          </AssociationSet>
+          <AssociationSet Name="FK__items2__deptid__0D7A0286" Association="Self.FK__items2__deptid__0D7A0286">
+            <End Role="dept2" EntitySet="dept2" />
+            <End Role="items2" EntitySet="items2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Enrollments_dbo_Courses_CourseID" Association="Self.FK_dbo_Enrollments_dbo_Courses_CourseID">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Enrollments" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Enrollments_dbo_Students_StudentID" Association="Self.FK_dbo_Enrollments_dbo_Students_StudentID">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Enrollments" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_InstructorCourses_dbo_Courses_Course_CourseID" Association="Self.FK_dbo_InstructorCourses_dbo_Courses_Course_CourseID">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="CourseInstructor" EntitySet="CourseInstructor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_InstructorCourses_dbo_Instructors_Instructor_ID" Association="Self.FK_dbo_InstructorCourses_dbo_Instructors_Instructor_ID">
+            <End Role="Instructors" EntitySet="Instructors" />
+            <End Role="CourseInstructor" EntitySet="CourseInstructor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OfficeAssignments_dbo_Instructors_InstructorID" Association="Self.FK_dbo_OfficeAssignments_dbo_Instructors_InstructorID">
+            <End Role="Instructors" EntitySet="Instructors" />
+            <End Role="OfficeAssignments" EntitySet="OfficeAssignments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cm_restoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="cm_restoEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="AspNetRoles" EntityType="cm_restoModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="cm_restoModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="cm_restoModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="cm_restoModel.AspNetUser" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="cm_restoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="cm_restoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="cm_restoModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="details" EntityType="cm_restoModel.detail" />
+          <EntitySet Name="masters" EntityType="cm_restoModel.master" />
+          <EntitySet Name="items" EntityType="cm_restoModel.item" />
+          <EntitySet Name="C__MigrationHistory" EntityType="cm_restoModel.C__MigrationHistory" />
+          <EntitySet Name="Courses" EntityType="cm_restoModel.Cours" />
+          <EntitySet Name="dept2" EntityType="cm_restoModel.dept2" />
+          <EntitySet Name="Enrollments" EntityType="cm_restoModel.Enrollment" />
+          <EntitySet Name="Guradian5" EntityType="cm_restoModel.Guradian5" />
+          <EntitySet Name="Instructors" EntityType="cm_restoModel.Instructor" />
+          <EntitySet Name="items2" EntityType="cm_restoModel.items2" />
+          <EntitySet Name="OfficeAssignments" EntityType="cm_restoModel.OfficeAssignment" />
+          <EntitySet Name="student2" EntityType="cm_restoModel.student2" />
+          <EntitySet Name="student5" EntityType="cm_restoModel.student5" />
+          <EntitySet Name="Students" EntityType="cm_restoModel.Student" />
+          <AssociationSet Name="FK_dbo_Enrollments_dbo_Courses_CourseID" Association="cm_restoModel.FK_dbo_Enrollments_dbo_Courses_CourseID">
+            <End Role="Cours" EntitySet="Courses" />
+            <End Role="Enrollment" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__items2__deptid__0D7A0286" Association="cm_restoModel.FK__items2__deptid__0D7A0286">
+            <End Role="dept2" EntitySet="dept2" />
+            <End Role="items2" EntitySet="items2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Enrollments_dbo_Students_StudentID" Association="cm_restoModel.FK_dbo_Enrollments_dbo_Students_StudentID">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Enrollment" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Guradian5__Stude__08B54D69" Association="cm_restoModel.FK__Guradian5__Stude__08B54D69">
+            <End Role="student5" EntitySet="student5" />
+            <End Role="Guradian5" EntitySet="Guradian5" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OfficeAssignments_dbo_Instructors_InstructorID" Association="cm_restoModel.FK_dbo_OfficeAssignments_dbo_Instructors_InstructorID">
+            <End Role="Instructor" EntitySet="Instructors" />
+            <End Role="OfficeAssignment" EntitySet="OfficeAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="CourseInstructor" Association="cm_restoModel.CourseInstructor">
+            <End Role="Cours" EntitySet="Courses" />
+            <End Role="Instructor" EntitySet="Instructors" />
+          </AssociationSet>
+          <EntitySet Name="sales" EntityType="cm_restoModel.sale" />
+        </EntityContainer>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="cm_restoModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="cm_restoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="cm_restoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="cm_restoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="cm_restoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetRoles" Relationship="cm_restoModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="cm_restoModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="cm_restoModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="cm_restoModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="cm_restoModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="cm_restoModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="cm_restoModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="detail">
+          <Key>
+            <PropertyRef Name="salesid" />
+            <PropertyRef Name="slno" />
+          </Key>
+          <Property Name="salesid" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="slno" Type="Int32" Nullable="false" />
+          <Property Name="itemcode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="unitprice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="totalprice" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="master">
+          <Key>
+            <PropertyRef Name="salesid" />
+          </Key>
+          <Property Name="salesid" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="party" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="discount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="gross" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="paid" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="due" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="gname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="sell" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="CourseID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Credits" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Enrollments" Relationship="cm_restoModel.FK_dbo_Enrollments_dbo_Courses_CourseID" FromRole="Cours" ToRole="Enrollment" />
+          <NavigationProperty Name="Instructors" Relationship="cm_restoModel.CourseInstructor" FromRole="Cours" ToRole="Instructor" />
+        </EntityType>
+        <EntityType Name="dept2">
+          <Key>
+            <PropertyRef Name="deptid" />
+          </Key>
+          <Property Name="deptid" Type="Int32" Nullable="false" />
+          <Property Name="deptname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="items2" Relationship="cm_restoModel.FK__items2__deptid__0D7A0286" FromRole="dept2" ToRole="items2" />
+        </EntityType>
+        <EntityType Name="Enrollment">
+          <Key>
+            <PropertyRef Name="EnrollmentID" />
+          </Key>
+          <Property Name="EnrollmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseID" Type="Int32" Nullable="false" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="Grade" Type="Int32" />
+          <NavigationProperty Name="Cours" Relationship="cm_restoModel.FK_dbo_Enrollments_dbo_Courses_CourseID" FromRole="Enrollment" ToRole="Cours" />
+          <NavigationProperty Name="Student" Relationship="cm_restoModel.FK_dbo_Enrollments_dbo_Students_StudentID" FromRole="Enrollment" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Guradian5">
+          <Key>
+            <PropertyRef Name="GuardianID" />
+          </Key>
+          <Property Name="GuardianID" Type="Int32" Nullable="false" />
+          <Property Name="FatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MotherName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StudentsId" Type="Int32" />
+          <NavigationProperty Name="student5" Relationship="cm_restoModel.FK__Guradian5__Stude__08B54D69" FromRole="Guradian5" ToRole="student5" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstMidName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="OfficeAssignment" Relationship="cm_restoModel.FK_dbo_OfficeAssignments_dbo_Instructors_InstructorID" FromRole="Instructor" ToRole="OfficeAssignment" />
+          <NavigationProperty Name="Courses" Relationship="cm_restoModel.CourseInstructor" FromRole="Instructor" ToRole="Cours" />
+        </EntityType>
+        <EntityType Name="items2">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="Int32" Nullable="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="deptid" Type="Int32" />
+          <Property Name="cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="rate" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="dept2" Relationship="cm_restoModel.FK__items2__deptid__0D7A0286" FromRole="items2" ToRole="dept2" />
+        </EntityType>
+        <EntityType Name="OfficeAssignment">
+          <Key>
+            <PropertyRef Name="InstructorID" />
+          </Key>
+          <Property Name="InstructorID" Type="Int32" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Instructor" Relationship="cm_restoModel.FK_dbo_OfficeAssignments_dbo_Instructors_InstructorID" FromRole="OfficeAssignment" ToRole="Instructor" />
+        </EntityType>
+        <EntityType Name="student2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="class" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fee" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="student5">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Class" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Guradian5" Relationship="cm_restoModel.FK__Guradian5__Stude__08B54D69" FromRole="student5" ToRole="Guradian5" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstMidName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EnrollmentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Enrollments" Relationship="cm_restoModel.FK_dbo_Enrollments_dbo_Students_StudentID" FromRole="Student" ToRole="Enrollment" />
+        </EntityType>
+        <Association Name="FK_dbo_Enrollments_dbo_Courses_CourseID">
+          <End Type="cm_restoModel.Cours" Role="Cours" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="cm_restoModel.Enrollment" Role="Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cours">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="Enrollment">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__items2__deptid__0D7A0286">
+          <End Type="cm_restoModel.dept2" Role="dept2" Multiplicity="0..1" />
+          <End Type="cm_restoModel.items2" Role="items2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dept2">
+              <PropertyRef Name="deptid" />
+            </Principal>
+            <Dependent Role="items2">
+              <PropertyRef Name="deptid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Enrollments_dbo_Students_StudentID">
+          <End Type="cm_restoModel.Student" Role="Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="cm_restoModel.Enrollment" Role="Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Enrollment">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Guradian5__Stude__08B54D69">
+          <End Type="cm_restoModel.student5" Role="student5" Multiplicity="0..1" />
+          <End Type="cm_restoModel.Guradian5" Role="Guradian5" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student5">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Guradian5">
+              <PropertyRef Name="StudentsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OfficeAssignments_dbo_Instructors_InstructorID">
+          <End Type="cm_restoModel.Instructor" Role="Instructor" Multiplicity="1" />
+          <End Type="cm_restoModel.OfficeAssignment" Role="OfficeAssignment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OfficeAssignment">
+              <PropertyRef Name="InstructorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CourseInstructor">
+          <End Type="cm_restoModel.Cours" Role="Cours" Multiplicity="*" />
+          <End Type="cm_restoModel.Instructor" Role="Instructor" Multiplicity="*" />
+        </Association>
+        <EntityType Name="sale">
+          <Key>
+            <PropertyRef Name="salesid" />
+            <PropertyRef Name="slno" />
+          </Key>
+          <Property Name="salesid" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="slno" Type="Int32" Nullable="false" />
+          <Property Name="itemcode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cm_restoModelStoreContainer" CdmEntityContainer="cm_restoEntities" >
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="cm_restoModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="cm_restoModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="cm_restoModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="cm_restoModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="cm_restoModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="details">
+            <EntityTypeMapping TypeName="cm_restoModel.detail">
+              <MappingFragment StoreEntitySet="details">
+                <ScalarProperty Name="totalprice" ColumnName="totalprice" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+                <ScalarProperty Name="slno" ColumnName="slno" />
+                <ScalarProperty Name="salesid" ColumnName="salesid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="masters">
+            <EntityTypeMapping TypeName="cm_restoModel.master">
+              <MappingFragment StoreEntitySet="master">
+                <ScalarProperty Name="due" ColumnName="due" />
+                <ScalarProperty Name="paid" ColumnName="paid" />
+                <ScalarProperty Name="gross" ColumnName="gross" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="party" ColumnName="party" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="salesid" ColumnName="salesid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="items">
+            <EntityTypeMapping TypeName="cm_restoModel.item">
+              <MappingFragment StoreEntitySet="items">
+                <ScalarProperty Name="sell" ColumnName="sell" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="gname" ColumnName="gname" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="cm_restoModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="cm_restoModel.Cours">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="Credits" ColumnName="Credits" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dept2">
+            <EntityTypeMapping TypeName="cm_restoModel.dept2">
+              <MappingFragment StoreEntitySet="dept2">
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="deptname" ColumnName="deptname" />
+                <ScalarProperty Name="deptid" ColumnName="deptid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enrollments">
+            <EntityTypeMapping TypeName="cm_restoModel.Enrollment">
+              <MappingFragment StoreEntitySet="Enrollments">
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="EnrollmentID" ColumnName="EnrollmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guradian5">
+            <EntityTypeMapping TypeName="cm_restoModel.Guradian5">
+              <MappingFragment StoreEntitySet="Guradian5">
+                <ScalarProperty Name="StudentsId" ColumnName="StudentsId" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="GuardianID" ColumnName="GuardianID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instructors">
+            <EntityTypeMapping TypeName="cm_restoModel.Instructor">
+              <MappingFragment StoreEntitySet="Instructors">
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="FirstMidName" ColumnName="FirstMidName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="items2">
+            <EntityTypeMapping TypeName="cm_restoModel.items2">
+              <MappingFragment StoreEntitySet="items2">
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="deptid" ColumnName="deptid" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfficeAssignments">
+            <EntityTypeMapping TypeName="cm_restoModel.OfficeAssignment">
+              <MappingFragment StoreEntitySet="OfficeAssignments">
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="student2">
+            <EntityTypeMapping TypeName="cm_restoModel.student2">
+              <MappingFragment StoreEntitySet="student2">
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="class" ColumnName="class" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="student5">
+            <EntityTypeMapping TypeName="cm_restoModel.student5">
+              <MappingFragment StoreEntitySet="student5">
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="cm_restoModel.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="EnrollmentDate" ColumnName="EnrollmentDate" />
+                <ScalarProperty Name="FirstMidName" ColumnName="FirstMidName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CourseInstructor" TypeName="cm_restoModel.CourseInstructor" StoreEntitySet="CourseInstructor">
+            <EndProperty Name="Instructor">
+              <ScalarProperty Name="ID" ColumnName="InstructorID" />
+            </EndProperty>
+            <EndProperty Name="Cours">
+              <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="sales">
+            <EntityTypeMapping TypeName="cm_restoModel.sale">
+              <MappingFragment StoreEntitySet="sales">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+                <ScalarProperty Name="slno" ColumnName="slno" />
+                <ScalarProperty Name="salesid" ColumnName="salesid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
